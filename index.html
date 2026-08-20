@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Happy 21st Birthday Imelina | KKN Desa Parsaoran Urat</title>
+
+    <!-- Google Fonts Premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6.5.1 Icons & AOS Animation Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dark-glow">
+
+    <!-- Preloader Layer (Aman Failsafe Anti-Terkunci) -->
+    <div id="preloader">
+        <div class="preloader-card">
+            <div class="crown-pulse-loader">
+                <i class="fas fa-crown crown-icon"></i>
+            </div>
+            <span class="kkn-badge-loader"><i class="fas fa-map-marker-alt"></i> KKN Desa Parsaoran Urat</span>
+            <h2 class="loader-title">IMELINA <span>21</span></h2>
+            <p class="loader-text">Merangkai Momen Spesial 21 Agustus...</p>
+        </div>
+    </div>
+
+    <!-- Canvas Partikel Bintang Interaktif (Pointer Events Diset Non-Blocking) -->
+    <canvas id="particles-canvas" style="pointer-events: none;"></canvas>
+
+    <!-- Floating Toast Notification -->
+    <div id="toast" class="toast-card"></div>
+
+    <!-- Pemutar Musik Floating Glassmorphism (Monokrom - Tulus) -->
+    <div class="music-player-widget">
+        <div class="song-info">
+            <div class="song-icon-wrapper">
+                <i class="fas fa-compact-disc song-icon" id="discIcon"></i>
+            </div>
+            <div class="song-text">
+                <span class="song-title">Monokrom</span>
+                <span class="song-sub">Tulus • Soundtrack KKN ✨</span>
+            </div>
+        </div>
+        <div class="equalizer paused" id="equalizer">
+            <span></span><span></span><span></span><span></span>
+        </div>
+        <button class="music-play-btn" id="musicToggle" type="button" aria-label="Play Music">
+            <i class="fas fa-play" id="musicIcon"></i>
+        </button>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="bgMusic" src="monokrom.mp3" loop preload="auto"></audio>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-brand">IMELINA <i class="fas fa-crown brand-crown"></i> 21</a>
+            
+            <ul class="nav-links">
+                <li><a href="#hero" class="nav-link">Beranda</a></li>
+                <li><a href="#birthday-queen" class="nav-link">The Queen</a></li>
+                <li><a href="#squad" class="nav-link">Kisah KKN</a></li>
+                <li><a href="#wishes" class="nav-link">Pesan Sahabat</a></li>
+                <li><a href="#gallery" class="nav-link">Galeri Kenangan</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="icon-btn" id="themeToggle" type="button" title="Ubah Mode Tampilan"><i class="fas fa-sun"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+            <div class="glow-badge">
+                <i class="fas fa-campground"></i> KKN Desa Parsaoran Urat • 21st Milestone
+            </div>
+            <h1 class="main-title">Happy Birthday Imelina! 🎉</h1>
+            <p class="typewriter-text" id="typewriterText"></p>
+
+            <!-- Hero Action Buttons -->
+            <div class="hero-actions-grid" data-aos="fade-up" data-aos-delay="300">
+                <button class="btn btn-primary" id="btnConfetti" type="button"><i class="fas fa-party-horn"></i> Hujan Konfeti</button>
+                <button class="btn btn-secondary" id="btnFireworks" type="button"><i class="fas fa-fireworks"></i> Kembang Api</button>
+                <button class="btn btn-accent" id="btnRandomQuote" type="button"><i class="fas fa-heart"></i> Doa Sahabat</button>
+                <button class="btn btn-outline" id="openLetterModal" type="button"><i class="fas fa-envelope-open-text"></i> Surat KKN</button>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <a href="#birthday-queen" aria-label="Scroll Down"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <!-- Birthday Queen Profile Section -->
+    <section id="birthday-queen" class="section-padding">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="tagline">Bintang Utama Hari Ini</span>
+                <h2 class="title">The Birthday Queen 👑</h2>
+            </div>
+
+            <div class="queen-card-wrapper" data-aos="zoom-in">
+                <div class="queen-card">
+                    <div class="queen-img-box">
+                        <img src="img/imelina-hero.jpg" alt="Imelina Priskila Br Sitanggang" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600'">
+                        <div class="crown-badge"><i class="fas fa-crown"></i></div>
+                    </div>
+                    <div class="queen-info">
+                        <h3>Imelina Priskila Br Sitanggang</h3>
+                        <p class="dob"><i class="fas fa-calendar-star"></i> 21 Agustus 2005 (21 Tahun)</p>
+                        <p class="queen-quote">
+                            "Lembar baru usia 21 resmi dibuka. Dari hari-hari penuh cerita di Desa Parsaoran Urat hingga hari ini, senyuman dan kehangatanmu selalu menjadi pencerah bagi kami. Semoga panjang umur, sehat selalu, dan seluruh impian besarmu terwujud!"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Kisah KKN Desa Parsaoran Urat & Kebersamaan Ber-4 -->
+    <section id="squad" class="section-padding bg-alt">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="tagline">Dipertemukan Di Samosir</span>
+                <h2 class="title">Kisah KKN Desa Parsaoran Urat 🏔️</h2>
+            </div>
+
+            <div class="group-showcase-box" data-aos="zoom-in">
+                <div class="group-img-wrapper">
+                    <img src="img/berempat-main.jpg" alt="Foto Bersama Ber-4 KKN Parsaoran Urat" onerror="this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900'">
+                </div>
+
+                <div class="kkn-location-strip">
+                    <i class="fas fa-map-marked-alt"></i> Desa Parsaoran Urat, Samosir — Tempat Awal Cerita Kita
+                </div>
+
+                <div class="group-badges-container">
+                    <span class="squad-badge"><i class="fas fa-user-circle"></i> Rivan Permana Putra Simatupang</span>
+                    <span class="squad-badge"><i class="fas fa-user-circle"></i> Cristine Natasia Sihaloho</span>
+                    <span class="squad-badge"><i class="fas fa-user-circle"></i> Hot Daniel Panjaitan</span>
+                    <span class="squad-badge highlight-gold"><i class="fas fa-crown"></i> Imelina Sitanggang</span>
+                </div>
+
+                <p class="group-description">
+                    "Tak pernah terbayangkan bahwa pengabdian KKN di Desa Parsaoran Urat akan mengikat kita ber-4 dalam persahabatan yang begitu tulus. Dari canggung menjadi saudara, dari canda di posko hingga saling menguatkan sampai detik ini. Selamat ulang tahun ke-21 Imel, kita ber-4 selamanya!"
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ucapan Spesial dari Trio Sahabat (Rivan, Cristine, Daniel) & Sastra -->
+    <section id="wishes" class="section-padding">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="tagline">Ungkapan Hati Dari Posko KKN</span>
+                <h2 class="title">Ucapan Dari Kami Bertiga 💜</h2>
+            </div>
+
+            <!-- Tab Buttons Sastra & Wishes -->
+            <div class="tab-sastra-buttons" data-aos="fade-up">
+                <button class="sastra-tab-btn active" data-sastra="wishes-trio" type="button"><i class="fas fa-heart"></i> Pesan Sahabat</button>
+                <button class="sastra-tab-btn" data-sastra="puisi-ultah" type="button"><i class="fas fa-feather-alt"></i> Puisi Parsaoran Urat</button>
+                <button class="sastra-tab-btn" data-sastra="pantun-ultah" type="button"><i class="fas fa-scroll"></i> Pantun Ulang Tahun</button>
+            </div>
+
+            <!-- Content Pesan Trio Sahabat -->
+            <div class="sastra-content active" id="content-wishes-trio" data-aos="zoom-in">
+                <div class="wish-cards-container">
+                    <!-- Wish Rivan -->
+                    <div class="wish-card border-rivan">
+                        <div class="wish-header">
+                            <i class="fas fa-quote-left wish-icon"></i>
+                            <div>
+                                <h5>Rivan Permana Putra Simatupang</h5>
+                                <span>Sahabat KKN Parsaoran Urat</span>
+                            </div>
+                        </div>
+                        <p class="wish-text">
+                            "Selamat ulang tahun yang ke-21 Imel! Dari zaman perjuangan KKN di Parsaoran Urat sampai sekarang, kamu selalu jadi sosok yang baik dan ceria. Semoga di usia dewasa ini, setiap jalanmu makin dimudahkan dan cita-citamu tercapai. Kita ber-4 selalu ada buat kamu!"
+                        </p>
+                    </div>
+
+                    <!-- Wish Cristine -->
+                    <div class="wish-card border-cristine">
+                        <div class="wish-header">
+                            <i class="fas fa-quote-left wish-icon"></i>
+                            <div>
+                                <h5>Cristine Natasia Sihaloho</h5>
+                                <span>Sahabat KKN Parsaoran Urat</span>
+                            </div>
+                        </div>
+                        <p class="wish-text">
+                            "Happy Birthday Imelina cantik! Bersyukur banget Tuhan pertemukan kita di KKN Parsaoran Urat sampai bisa sesahabat ini. Terima kasih udah selalu jadi teman yang hangat dan pendengar yang baik. Semoga usiamu yang ke-21 dipenuhi berkah dan bahagia. Love you!"
+                        </p>
+                    </div>
+
+                    <!-- Wish Daniel -->
+                    <div class="wish-card border-daniel">
+                        <div class="wish-header">
+                            <i class="fas fa-quote-left wish-icon"></i>
+                            <div>
+                                <h5>Hot Daniel Panjaitan</h5>
+                                <span>Sahabat KKN Parsaoran Urat</span>
+                            </div>
+                        </div>
+                        <p class="wish-text">
+                            "Selamat ulang tahun Imel! KKN Parsaoran Urat jadi saksi awal persahabatan hebat kita ber-4. Semoga sehat selalu, makin sukses dalam studi dan impianmu. Ingat, kapan pun butuh bantuan atau tempat cerita, kita bertiga selalu siap pasang badan!"
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Puisi Ultah (Tema KKN Parsaoran Urat) -->
+            <div class="sastra-content" id="content-puisi-ultah">
+                <div class="poem-box">
+                    <i class="fas fa-quote-left poem-quote-icon"></i>
+                    <h3 class="poem-title">"Jejak Kenangan Parsaoran Urat"</h3>
+                    <div class="poem-body">
+                        <p>Di bawah naungan angin Desa Parsaoran Urat yang tenang,</p>
+                        <p>Kisah empat sahabat bermula dengan senyum yang terang.</p>
+                        <p>Imelina Priskila, sosok hangat pembawa tawa dan ceria,</p>
+                        <p>Hari ini di usia 21, doa-doa terbaik kami bergema.</p>
+                        <br>
+                        <p>Seperti nada Monokrom yang bergema takkan pudar,</p>
+                        <p>Kebersamaan yang kita pupuk kini tumbuh makin mekar.</p>
+                        <p>Rivan, Cristine, Daniel, dan Imel bergandengan tangan,</p>
+                        <p>Dari Parsaoran Urat menuju masa depan yang penuh harapan.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Pantun Ultah -->
+            <div class="sastra-content" id="content-pantun-ultah">
+                <div class="pantun-grid">
+                    <div class="pantun-card">
+                        <div class="pantun-tag"><i class="fas fa-map-marker-alt"></i> Pantun KKN 1</div>
+                        <p>Jalan-jalan ke Parsaoran Urat,<br>Singgah sebentar menikmati pemandangan.<br>Selamat ultah Imelina sahabat,<br>Persahabatan kita abadi sepanjang zaman.</p>
+                    </div>
+
+                    <div class="pantun-card">
+                        <div class="pantun-tag"><i class="fas fa-heart"></i> Pantun KKN 2</div>
+                        <p>Indahnya danau di Pulau Samosir,<br>Tempat KKN penuh cerita bersama.<br>21 tahun usiamu kini diukir,<br>Semoga bahagia dan sukses selamanya.</p>
+                    </div>
+
+                    <div class="pantun-card">
+                        <div class="pantun-tag"><i class="fas fa-music"></i> Pantun KKN 3</div>
+                        <p>Lagu Monokrom diputar syahdu,<br>Sambil mengingat masa KKN yang lalu.<br>Rivan, Cristine, Daniel padamu,<br>Mengucapkan Happy Birthday selalu!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Surprise Box -->
+    <section class="surprise-section section-padding bg-alt">
+        <div class="container text-center">
+            <div class="section-header" data-aos="fade-up">
+                <span class="tagline">Sentuh Untuk Kejutan</span>
+                <h2 class="title">Kenapa Imel Sangat Berharga?</h2>
+            </div>
+            <div class="interactive-card-box" id="surpriseCard" data-aos="zoom-in">
+                <i class="fas fa-gift surprise-icon"></i>
+                <p id="surpriseText">Klik di sini untuk membuka pesan acak dari Rivan, Cristine & Daniel!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri Memori (Foto Bersama Ber-4 & Solo Imelina) -->
+    <section id="gallery" class="section-padding">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="tagline">Dokumentasi Indah</span>
+                <h2 class="title">Galeri Kenangan Parsaoran Urat 📸</h2>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="filter-buttons" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all" type="button">Semua Momen</button>
+                <button class="filter-btn" data-filter="berempat" type="button">Foto Ber-4 KKN</button>
+                <button class="filter-btn" data-filter="imelina" type="button">Imelina Solo</button>
+            </div>
+
+            <!-- Gallery Grid Potret 3:4 -->
+            <div class="gallery-grid">
+                <!-- Foto Berempat 1 -->
+                <div class="gallery-item berempat" data-aos="zoom-in">
+                    <div class="portrait-box">
+                        <img src="img/berempat-1.jpg" alt="Momen KKN Ber-4 1" onerror="this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600'">
+                    </div>
+                    <div class="gallery-caption">KKN Parsaoran Urat ♥</div>
+                </div>
+
+                <!-- Foto Berempat 2 -->
+                <div class="gallery-item berempat" data-aos="zoom-in">
+                    <div class="portrait-box">
+                        <img src="img/berempat-2.jpg" alt="Momen KKN Ber-4 2" onerror="this.src='https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600'">
+                    </div>
+                    <div class="gallery-caption">Canda Tawa Posko KKN</div>
+                </div>
+
+                <!-- Foto Solo Imelina 1 -->
+                <div class="gallery-item imelina" data-aos="zoom-in">
+                    <div class="portrait-box">
+                        <img src="img/imelina-1.jpg" alt="Imelina Sitanggang 1" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600'">
+                    </div>
+                    <div class="gallery-caption">Imelina Priskila ✨</div>
+                </div>
+
+                <!-- Foto Berempat 3 -->
+                <div class="gallery-item berempat" data-aos="zoom-in">
+                    <div class="portrait-box">
+                        <img src="img/berempat-3.jpg" alt="Momen KKN Ber-4 3" onerror="this.src='https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?w=600'">
+                    </div>
+                    <div class="gallery-caption">4 Sahabat Selamanya</div>
+                </div>
+
+                <!-- Foto Solo Imelina 2 -->
+                <div class="gallery-item imelina" data-aos="zoom-in">
+                    <div class="portrait-box">
+                        <img src="img/imelina-2.jpg" alt="Imelina Sitanggang 2" onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600'">
+                    </div>
+                    <div class="gallery-caption">Senyum Ulang Tahun 🎉</div>
+                </div>
+
+                <!-- Foto Solo Imelina 3 -->
+                <div class="gallery-item imelina" data-aos="zoom-in">
+                    <div class="portrait-box">
+                        <img src="img/imelina-3.jpg" alt="Imelina Sitanggang 3" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600'">
+                    </div>
+                    <div class="gallery-caption">Special Day 21st 🌹</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Surat Rahasia Sahabat -->
+    <div class="modal" id="letterModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button class="close-modal" id="closeLetterModal" type="button" aria-label="Close Modal">&times;</button>
+                <i class="fas fa-envelope-open-text modal-icon"></i>
+                <h3 class="modal-title">Surat Dari Posko KKN</h3>
+                <p class="modal-body-text">
+                    "Dari Desa Parsaoran Urat hingga selamanya..." <br><br>
+                    Untuk <strong>Imelina Priskila Br Sitanggang</strong>,<br>
+                    Selamat ulang tahun yang ke-21! Bersyukur sekali kita dipertemukan di KKN Desa Parsaoran Urat hingga menjadi 4 sahabat sejati. Terima kasih sudah menjadi warna terbaik, pendengar yang sabar, dan sahabat yang selalu membawa tawa.<br><br>
+                    Di mana pun jalan kita nanti, ingatlah bahwa kamu punya 3 sahabat yang selalu ada di sampingmu:<br><br>
+                    <strong>Rivan Permana Putra Simatupang • Cristine Natasia Sihaloho • Hot Daniel Panjaitan</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-title">Imelina • Rivan • Cristine • Daniel ♥</p>
+            <p class="footer-sub">&copy; 21 Agustus • KKN Desa Parsaoran Urat. Persahabatan Abadi Selamanya.</p>
+        </div>
+    </footer>
+
+    <!-- AOS Animation & Script JS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

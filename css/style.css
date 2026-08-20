@@ -1,0 +1,915 @@
+/* ==========================================================================
+   1. DESIGN SYSTEM & GLASSMORPHISM VARIABLES
+   ========================================================================== */
+:root {
+    --primary-color: #f72585;
+    --primary-dark: #b5179e;
+    --gold-accent: #ffd700;
+    --gold-soft: #f4c430;
+    --secondary-color: #ff758f;
+    --sunset-orange: #ff6b6b;
+    --bg-dark: #0d0208;
+    --bg-alt: #170410;
+    --card-bg: #220818;
+    --text-light: #f8f9fa;
+    --text-muted: #a0aab2;
+    --white: #ffffff;
+    --glass-bg: rgba(34, 8, 24, 0.88);
+    --glass-border: rgba(247, 37, 133, 0.35);
+    --glass-border-gold: rgba(255, 215, 0, 0.4);
+    --shadow-soft: 0 10px 25px -5px rgba(0, 0, 0, 0.7);
+    --shadow-glow: 0 15px 35px rgba(247, 37, 133, 0.3);
+    --shadow-gold: 0 15px 35px rgba(255, 215, 0, 0.25);
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 12px;
+}
+
+/* Light Theme Mode Alternative */
+body.light-theme {
+    --bg-dark: #fff0f5;
+    --bg-alt: #ffe4e1;
+    --card-bg: #ffffff;
+    --text-light: #2b2d42;
+    --text-muted: #6c757d;
+    --glass-bg: rgba(255, 255, 255, 0.92);
+    --glass-border: rgba(247, 37, 133, 0.25);
+    --shadow-soft: 0 10px 25px -5px rgba(247, 37, 133, 0.15);
+}
+
+/* Universal Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html, body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden !important;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* ==========================================================================
+   2. PRELOADER & CANVAS PARTICLES
+   ========================================================================== */
+#preloader {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
+    background: var(--bg-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+    transition: opacity 0.5s ease;
+}
+
+.preloader-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border-gold);
+    padding: 35px 25px;
+    border-radius: var(--radius-lg);
+    text-align: center;
+    box-shadow: var(--shadow-gold);
+    max-width: 320px;
+    width: 90%;
+}
+
+.crown-pulse-loader {
+    width: 65px; height: 65px;
+    margin: 0 auto 15px;
+    background: rgba(255, 215, 0, 0.15);
+    border: 2px solid var(--gold-accent);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+    animation: crownPulse 1.5s infinite ease-in-out;
+}
+
+.crown-icon {
+    font-size: 1.8rem;
+    color: var(--gold-accent);
+}
+
+.kkn-badge-loader {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--gold-accent);
+    background: rgba(255, 215, 0, 0.12);
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    border: 1px solid var(--gold-accent);
+}
+
+.loader-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--white);
+}
+
+.loader-title span {
+    color: var(--gold-accent);
+}
+
+.loader-text {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+}
+
+#particles-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none !important;
+    z-index: 1;
+}
+
+/* ==========================================================================
+   3. FLOATING MUSIC PLAYER WIDGET
+   ========================================================================== */
+.music-player-widget {
+    position: fixed;
+    bottom: 20px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 40px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--shadow-glow);
+    z-index: 10000;
+    width: 92%; max-width: 380px;
+}
+
+.song-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    overflow: hidden;
+}
+
+.song-icon-wrapper {
+    width: 34px; height: 34px;
+    background: rgba(255, 215, 0, 0.2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.song-icon {
+    font-size: 1rem;
+    color: var(--gold-accent);
+}
+
+.song-icon.spinning {
+    animation: spin 6s linear infinite;
+}
+
+.song-text {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.song-title {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--gold-accent);
+    white-space: nowrap;
+}
+
+.song-sub {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    opacity: 0.85;
+    white-space: nowrap;
+}
+
+.equalizer {
+    display: flex;
+    gap: 3px;
+    align-items: flex-end;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.equalizer span {
+    width: 3px;
+    background: var(--gold-accent);
+    height: 100%;
+    border-radius: 3px;
+    animation: bounce 1s infinite alternate;
+}
+
+.equalizer span:nth-child(2) { animation-delay: 0.2s; }
+.equalizer span:nth-child(3) { animation-delay: 0.4s; }
+.equalizer span:nth-child(4) { animation-delay: 0.6s; }
+.equalizer.paused span { animation-play-state: paused; height: 4px; }
+
+.music-play-btn {
+    width: 38px; height: 38px;
+    border-radius: 50%; border: none;
+    background: var(--primary-color);
+    color: var(--white);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 12px rgba(247, 37, 133, 0.5);
+    flex-shrink: 0;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.music-play-btn:active { transform: scale(0.9); }
+
+/* ==========================================================================
+   4. NAVIGATION BAR
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    padding: 14px 0;
+    z-index: 1000;
+    transition: background 0.3s ease, padding 0.3s ease;
+}
+
+.navbar.scrolled {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    padding: 10px 0;
+}
+
+.nav-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    font-family: 'Cinzel', serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.brand-crown {
+    font-size: 0.95rem;
+    color: var(--gold-accent);
+    margin: 0 2px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover { color: var(--gold-accent); }
+
+.icon-btn {
+    width: 38px; height: 38px;
+    border-radius: 50%; border: none;
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--white);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.95rem;
+    transition: 0.3s ease;
+}
+
+.icon-btn:hover { background: var(--primary-color); }
+
+/* ==========================================================================
+   5. HERO SECTION
+   ========================================================================== */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    background: url('https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=1200') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 20px 40px;
+    z-index: 2;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(180deg, rgba(13, 2, 8, 0.85) 0%, rgba(34, 8, 24, 0.88) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    width: 100%; max-width: 780px;
+    color: var(--white);
+}
+
+.glow-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 18px;
+    background: rgba(255, 215, 0, 0.15);
+    border: 1px solid var(--gold-accent);
+    border-radius: 30px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--gold-accent);
+    margin-bottom: 12px;
+}
+
+.main-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.6rem;
+    font-weight: 800;
+    margin: 8px 0;
+    text-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+    background: linear-gradient(45deg, #ffffff, var(--gold-accent), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.typewriter-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    color: #ffb3c1;
+    min-height: 48px;
+}
+
+.hero-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 440px;
+    margin: 25px auto 0;
+    position: relative;
+    z-index: 5;
+}
+
+.btn {
+    padding: 12px 18px;
+    border-radius: 30px;
+    border: none;
+    font-weight: 600;
+    font-size: 0.82rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    user-select: none;
+}
+
+.btn:active { transform: scale(0.95); }
+.btn-primary { background: var(--primary-color); color: var(--white); box-shadow: 0 4px 15px rgba(247, 37, 133, 0.4); }
+.btn-secondary { background: #ff9f1c; color: var(--white); box-shadow: 0 4px 15px rgba(255, 159, 28, 0.4); }
+.btn-accent { background: #7209b7; color: var(--white); box-shadow: 0 4px 15px rgba(114, 9, 183, 0.4); }
+.btn-outline { background: rgba(255, 255, 255, 0.15); border: 1px solid var(--white); color: var(--white); }
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+.scroll-indicator a {
+    color: var(--gold-accent);
+    font-size: 1.2rem;
+    animation: floatDown 1.8s infinite;
+}
+
+/* ==========================================================================
+   6. SECTIONS GENERAL & BIRTHDAY QUEEN
+   ========================================================================== */
+.section-padding { padding: 70px 20px; position: relative; z-index: 2; }
+.bg-alt { background-color: var(--bg-alt); }
+.container { max-width: 950px; margin: 0 auto; width: 100%; }
+
+.section-header { text-align: center; margin-bottom: 35px; }
+.tagline { font-family: 'Dancing Script', cursive; font-size: 1.5rem; color: var(--gold-accent); display: block; }
+.title { font-family: 'Cinzel', serif; font-size: 2rem; color: var(--secondary-color); font-weight: 700; }
+
+.queen-card-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.queen-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: var(--shadow-gold);
+    border: 2px solid var(--gold-accent);
+    max-width: 600px;
+    width: 100%;
+}
+
+.queen-img-box {
+    width: 170px; height: 170px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    border: 4px solid var(--gold-accent);
+    position: relative;
+    padding: 4px;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+}
+
+.queen-img-box img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.crown-badge {
+    position: absolute;
+    top: -10px; right: -5px;
+    width: 42px; height: 42px;
+    background: var(--gold-accent);
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.6);
+}
+
+.queen-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--gold-accent);
+    margin-bottom: 4px;
+}
+
+.queen-info .dob {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 14px;
+}
+
+.queen-quote {
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+/* ==========================================================================
+   7. GROUP SHOWCASE (FOKUS KKN DESA PARSAORAN URAT)
+   ========================================================================== */
+.group-showcase-box {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--glass-border);
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.group-img-wrapper {
+    width: 100%;
+    max-height: 420px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 16px;
+    border: 2px solid var(--gold-accent);
+    box-shadow: var(--shadow-gold);
+}
+
+.group-img-wrapper img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.kkn-location-strip {
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px dashed var(--gold-accent);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--gold-accent);
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+.group-badges-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.squad-badge {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--glass-border);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-light);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.squad-badge.highlight-gold {
+    border-color: var(--gold-accent);
+    color: var(--gold-accent);
+    background: rgba(255, 215, 0, 0.12);
+}
+
+.group-description {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--text-light);
+    font-style: italic;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   8. UCAPAN TRIO SAHABAT & SASTRA
+   ========================================================================== */
+.tab-sastra-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.sastra-tab-btn {
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid var(--primary-color);
+    background: var(--card-bg);
+    color: var(--text-light);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.sastra-tab-btn.active, .sastra-tab-btn:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(247, 37, 133, 0.4);
+}
+
+.sastra-content { display: none; }
+.sastra-content.active { display: block; }
+
+.wish-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.wish-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    padding: 22px;
+    box-shadow: var(--shadow-soft);
+    border-left: 5px solid var(--primary-color);
+}
+
+.wish-card.border-rivan { border-left-color: #4cc9f0; }
+.wish-card.border-cristine { border-left-color: #f72585; }
+.wish-card.border-daniel { border-left-color: #ffb703; }
+
+.wish-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.wish-icon {
+    font-size: 1.4rem;
+    color: var(--gold-accent);
+}
+
+.wish-header h5 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.wish-header span {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    display: block;
+}
+
+.wish-text {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+.poem-box {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    max-width: 650px;
+    margin: 0 auto;
+    border: 1px solid var(--glass-border);
+}
+
+.poem-quote-icon {
+    font-size: 2rem;
+    color: rgba(255, 215, 0, 0.3);
+    margin-bottom: 10px;
+}
+
+.poem-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold-accent);
+    margin-bottom: 16px;
+    font-size: 1.3rem;
+}
+
+.poem-body p {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: var(--text-light);
+}
+
+.pantun-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.pantun-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    box-shadow: var(--shadow-soft);
+    border-left: 4px solid var(--gold-accent);
+}
+
+.pantun-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--gold-accent);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.pantun-card p {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* Surprise Box */
+.interactive-card-box {
+    background: var(--card-bg);
+    border: 2px dashed var(--gold-accent);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: var(--shadow-soft);
+    max-width: 600px;
+    margin: 0 auto;
+    user-select: none;
+}
+
+.surprise-icon { font-size: 2.5rem; color: var(--gold-accent); margin-bottom: 10px; }
+
+/* ==========================================================================
+   9. GALERI MEMORI (POTRET 3:4 PROPORSIONAL)
+   ========================================================================== */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--primary-color);
+    background: var(--card-bg);
+    color: var(--text-light);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+    gap: 14px;
+}
+
+.gallery-item {
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--glass-border);
+}
+
+.portrait-box {
+    width: 100%;
+    padding-top: 133.33%;
+    position: relative;
+    background: #111;
+}
+
+.portrait-box img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.gallery-caption {
+    padding: 8px;
+    font-size: 0.75rem;
+    text-align: center;
+    font-weight: 600;
+    color: var(--gold-accent);
+}
+
+/* ==========================================================================
+   10. TOAST, MODAL & FOOTER
+   ========================================================================== */
+.toast-card {
+    position: fixed;
+    top: 20px; left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    background: rgba(0, 0, 0, 0.95);
+    color: var(--white);
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 0.82rem;
+    z-index: 100000;
+    transition: 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    text-align: center;
+    max-width: 90%;
+}
+
+.toast-card.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 99999;
+    transition: 0.3s ease;
+    padding: 15px;
+}
+
+.modal.active { opacity: 1; pointer-events: all; }
+
+.modal-content {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: var(--radius-lg);
+    width: 100%; max-width: 440px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--gold-accent);
+}
+
+.close-modal {
+    position: absolute;
+    top: 12px; right: 16px;
+    border: none; background: none;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.modal-icon { font-size: 2.8rem; color: var(--gold-accent); margin-bottom: 12px; }
+.modal-title { font-family: 'Playfair Display', serif; color: var(--gold-accent); margin-bottom: 12px; }
+.modal-body-text { font-size: 0.88rem; color: var(--text-light); line-height: 1.6; }
+
+.footer {
+    text-align: center;
+    padding: 35px 20px;
+    background: #050102;
+    color: var(--white);
+}
+
+.footer-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; color: var(--gold-accent); }
+.footer-sub { font-size: 0.75rem; color: rgba(255, 255, 255, 0.6); }
+
+/* Keyframes */
+@keyframes crownPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+@keyframes bounce { 100% { height: 100%; } }
+@keyframes floatDown { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+
+/* ==========================================================================
+   11. MEDIA QUERIES (RESPONSIF HP & LAPTOP)
+   ========================================================================== */
+
+/* Tampilan HP (< 768px) */
+@media (max-width: 767px) {
+    .nav-links { display: none; }
+    .main-title { font-size: 2.1rem; }
+    .hero-actions-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Tampilan Laptop / Desktop (>= 768px) */
+@media (min-width: 768px) {
+    .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    .wish-cards-container { flex-direction: row; }
+    .wish-card { flex: 1; }
+}
