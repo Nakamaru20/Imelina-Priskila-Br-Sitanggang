@@ -10,14 +10,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
 
-    <!-- FontAwesome 6.5.1 Icons & AOS Animation Library -->
+    <!-- FontAwesome 6.5.1 & AOS Animation Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="dark-glow">
 
-    <!-- Preloader Layer (Aman Failsafe Anti-Terkunci) -->
+    <!-- Preloader Layer -->
     <div id="preloader">
         <div class="preloader-card">
             <div class="crown-pulse-loader">
@@ -29,13 +29,13 @@
         </div>
     </div>
 
-    <!-- Canvas Partikel Bintang Interaktif (Pointer Events Diset Non-Blocking) -->
-    <canvas id="particles-canvas" style="pointer-events: none;"></canvas>
+    <!-- Canvas Partikel Bintang Interaktif (Non-blocking click) -->
+    <canvas id="particles-canvas"></canvas>
 
     <!-- Floating Toast Notification -->
     <div id="toast" class="toast-card"></div>
 
-    <!-- Pemutar Musik Floating Glassmorphism (Monokrom - Tulus) -->
+    <!-- Floating Music Player (Monokrom - Tulus) -->
     <div class="music-player-widget">
         <div class="song-info">
             <div class="song-icon-wrapper">
@@ -54,7 +54,6 @@
         </button>
     </div>
 
-    <!-- Audio Element -->
     <audio id="bgMusic" src="monokrom.mp3" loop preload="auto"></audio>
 
     <!-- Navigation Bar -->
@@ -86,7 +85,6 @@
             <h1 class="main-title">Happy Birthday Imelina! 🎉</h1>
             <p class="typewriter-text" id="typewriterText"></p>
 
-            <!-- Hero Action Buttons -->
             <div class="hero-actions-grid" data-aos="fade-up" data-aos-delay="300">
                 <button class="btn btn-primary" id="btnConfetti" type="button"><i class="fas fa-party-horn"></i> Hujan Konfeti</button>
                 <button class="btn btn-secondary" id="btnFireworks" type="button"><i class="fas fa-fireworks"></i> Kembang Api</button>
@@ -134,8 +132,9 @@
             </div>
 
             <div class="group-showcase-box" data-aos="zoom-in">
-                <div class="group-img-wrapper">
-                    <img src="img/berempat-main.jpg" alt="Foto Bersama Ber-4 KKN Parsaoran Urat" onerror="this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900'">
+                <!-- Frame Gambar Utama Tanpa Pemotongan (Anti-Crop) -->
+                <div class="full-photo-frame">
+                    <img src="img/berempat-main.jpg" alt="Foto Bersama Ber-4 KKN Parsaoran Urat" class="uncropped-img" onerror="this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900'">
                 </div>
 
                 <div class="kkn-location-strip">
@@ -156,7 +155,7 @@
         </div>
     </section>
 
-    <!-- Ucapan Spesial dari Trio Sahabat (Rivan, Cristine, Daniel) & Sastra -->
+    <!-- Ucapan Spesial dari Trio Sahabat & Sastra -->
     <section id="wishes" class="section-padding">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
@@ -164,7 +163,6 @@
                 <h2 class="title">Ucapan Dari Kami Bertiga 💜</h2>
             </div>
 
-            <!-- Tab Buttons Sastra & Wishes -->
             <div class="tab-sastra-buttons" data-aos="fade-up">
                 <button class="sastra-tab-btn active" data-sastra="wishes-trio" type="button"><i class="fas fa-heart"></i> Pesan Sahabat</button>
                 <button class="sastra-tab-btn" data-sastra="puisi-ultah" type="button"><i class="fas fa-feather-alt"></i> Puisi Parsaoran Urat</button>
@@ -174,7 +172,6 @@
             <!-- Content Pesan Trio Sahabat -->
             <div class="sastra-content active" id="content-wishes-trio" data-aos="zoom-in">
                 <div class="wish-cards-container">
-                    <!-- Wish Rivan -->
                     <div class="wish-card border-rivan">
                         <div class="wish-header">
                             <i class="fas fa-quote-left wish-icon"></i>
@@ -188,7 +185,6 @@
                         </p>
                     </div>
 
-                    <!-- Wish Cristine -->
                     <div class="wish-card border-cristine">
                         <div class="wish-header">
                             <i class="fas fa-quote-left wish-icon"></i>
@@ -202,7 +198,6 @@
                         </p>
                     </div>
 
-                    <!-- Wish Daniel -->
                     <div class="wish-card border-daniel">
                         <div class="wish-header">
                             <i class="fas fa-quote-left wish-icon"></i>
@@ -218,7 +213,7 @@
                 </div>
             </div>
 
-            <!-- Content Puisi Ultah (Tema KKN Parsaoran Urat) -->
+            <!-- Content Puisi Ultah -->
             <div class="sastra-content" id="content-puisi-ultah">
                 <div class="poem-box">
                     <i class="fas fa-quote-left poem-quote-icon"></i>
@@ -273,7 +268,7 @@
         </div>
     </section>
 
-    <!-- Galeri Memori (Foto Bersama Ber-4 & Solo Imelina) -->
+    <!-- Galeri Memori Utuh -->
     <section id="gallery" class="section-padding">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
@@ -281,59 +276,52 @@
                 <h2 class="title">Galeri Kenangan Parsaoran Urat 📸</h2>
             </div>
 
-            <!-- Filter Buttons -->
             <div class="filter-buttons" data-aos="fade-up">
                 <button class="filter-btn active" data-filter="all" type="button">Semua Momen</button>
                 <button class="filter-btn" data-filter="berempat" type="button">Foto Ber-4 KKN</button>
                 <button class="filter-btn" data-filter="imelina" type="button">Imelina Solo</button>
             </div>
 
-            <!-- Gallery Grid Potret 3:4 -->
+            <!-- Gallery Grid Tanpa Pemotongan -->
             <div class="gallery-grid">
-                <!-- Foto Berempat 1 -->
                 <div class="gallery-item berempat" data-aos="zoom-in">
-                    <div class="portrait-box">
-                        <img src="img/berempat-1.jpg" alt="Momen KKN Ber-4 1" onerror="this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600'">
+                    <div class="full-photo-frame">
+                        <img src="img/berempat-1.jpg" alt="Momen KKN Ber-4 1" class="uncropped-img" onerror="this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600'">
                     </div>
                     <div class="gallery-caption">KKN Parsaoran Urat ♥</div>
                 </div>
 
-                <!-- Foto Berempat 2 -->
                 <div class="gallery-item berempat" data-aos="zoom-in">
-                    <div class="portrait-box">
-                        <img src="img/berempat-2.jpg" alt="Momen KKN Ber-4 2" onerror="this.src='https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600'">
+                    <div class="full-photo-frame">
+                        <img src="img/berempat-2.jpg" alt="Momen KKN Ber-4 2" class="uncropped-img" onerror="this.src='https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600'">
                     </div>
                     <div class="gallery-caption">Canda Tawa Posko KKN</div>
                 </div>
 
-                <!-- Foto Solo Imelina 1 -->
                 <div class="gallery-item imelina" data-aos="zoom-in">
-                    <div class="portrait-box">
-                        <img src="img/imelina-1.jpg" alt="Imelina Sitanggang 1" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600'">
+                    <div class="full-photo-frame">
+                        <img src="img/imelina-1.jpg" alt="Imelina Sitanggang 1" class="uncropped-img" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600'">
                     </div>
                     <div class="gallery-caption">Imelina Priskila ✨</div>
                 </div>
 
-                <!-- Foto Berempat 3 -->
                 <div class="gallery-item berempat" data-aos="zoom-in">
-                    <div class="portrait-box">
-                        <img src="img/berempat-3.jpg" alt="Momen KKN Ber-4 3" onerror="this.src='https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?w=600'">
+                    <div class="full-photo-frame">
+                        <img src="img/berempat-3.jpg" alt="Momen KKN Ber-4 3" class="uncropped-img" onerror="this.src='https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?w=600'">
                     </div>
                     <div class="gallery-caption">4 Sahabat Selamanya</div>
                 </div>
 
-                <!-- Foto Solo Imelina 2 -->
                 <div class="gallery-item imelina" data-aos="zoom-in">
-                    <div class="portrait-box">
-                        <img src="img/imelina-2.jpg" alt="Imelina Sitanggang 2" onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600'">
+                    <div class="full-photo-frame">
+                        <img src="img/imelina-2.jpg" alt="Imelina Sitanggang 2" class="uncropped-img" onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600'">
                     </div>
                     <div class="gallery-caption">Senyum Ulang Tahun 🎉</div>
                 </div>
 
-                <!-- Foto Solo Imelina 3 -->
                 <div class="gallery-item imelina" data-aos="zoom-in">
-                    <div class="portrait-box">
-                        <img src="img/imelina-3.jpg" alt="Imelina Sitanggang 3" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600'">
+                    <div class="full-photo-frame">
+                        <img src="img/imelina-3.jpg" alt="Imelina Sitanggang 3" class="uncropped-img" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600'">
                     </div>
                     <div class="gallery-caption">Special Day 21st 🌹</div>
                 </div>

@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Safely hide preloader in max 1.5s to prevent screen locking
     const hidePreloader = () => {
         const preloader = document.getElementById('preloader');
         if (preloader && preloader.style.display !== 'none') {
@@ -82,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
         bgMusic.load();
     }
 
-    // Auto-play trigger on first user tap/click
     const playMusicFirstTouch = () => {
         if (bgMusic && bgMusic.paused && !isPlaying) {
             bgMusic.play().then(() => {
@@ -126,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
-       5. THEME TOGGLE (DARK GLOW / LIGHT THEME)
+       5. THEME TOGGLE
        ========================================================================== */
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
@@ -139,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
-       6. TAB SASTRA (PESAN TRIO, PUISI, PANTUN)
+       6. TAB SASTRA
        ========================================================================== */
     const sastraTabs = document.querySelectorAll('.sastra-tab-btn');
     const sastraContents = document.querySelectorAll('.sastra-content');
@@ -171,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
-       8. HERO BUTTON ACTIONS & INTERACTION
+       8. HERO BUTTON ACTIONS
        ========================================================================== */
     const btnConfetti = document.getElementById('btnConfetti');
     if (btnConfetti) {
@@ -262,16 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ==========================================================================
-       12. SCREEN TAP/CLICK BURST PARTICLES
-       ========================================================================== */
-    window.addEventListener('click', (e) => {
-        if (!e.target.closest('button') && !e.target.closest('a') && !e.target.closest('.gallery-item') && !e.target.closest('.interactive-card-box')) {
-            createTouchBurst(e.clientX, e.clientY);
-        }
-    });
-
-    /* ==========================================================================
-       13. CANVAS PARTICLES & CONFETTI ENGINE
+       12. CANVAS PARTICLES & CONFETTI ENGINE
        ========================================================================== */
     const canvas = document.getElementById('particles-canvas');
     let parts = [];
